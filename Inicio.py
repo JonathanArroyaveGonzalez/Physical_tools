@@ -1,9 +1,10 @@
 import streamlit as st
 from pages import page1
-from layout import pagina2,regressions
+from layout import pagina2,regressions,home
 
 
 PAGES = {
+    "Inicio": home,
     "Calculadora de Regresiones": regressions,
     "Pagina 2": pagina2,
 

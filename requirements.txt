@@ -1,0 +1,7 @@
+streamlit
+numpy
+matplotlib
+scikit-learn
+pandas
+seaborn
+st-pages

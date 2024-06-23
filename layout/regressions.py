@@ -40,28 +40,27 @@ def graficar_regresion(x, y, y_pred, r2, ecuacion):
     ax.text(0.05, 0.95, f'R^2 = {r2:.2f}', transform=ax.transAxes)
     ax.text(0.05, 0.90, f'Ecuación: {ecuacion}', transform=ax.transAxes)
     ax.legend()
-    st.pyplot(fig)
+    st.pyplot(fig)  # Display Matplotlib figure
+
+
 
 
 def write():
+    theme()
     st.markdown(
         """
         <style>
             .stApp {
                 text-align: center; /* Centra todo el contenido de la aplicación */
             }
-            .stButton button { /* Estilo específico para el botón */
-                width: 200px; /* Ajusta el ancho según tus preferencias */
-            }
-
-
-
+            
         </style>
         """,
         unsafe_allow_html=True,
     )
-    theme()
-    st.title('Calculadora de Regresión')
+
+
+    st.title('Calculadora de Regresiones')
     tipo_regresion = st.radio('Selecciona el tipo de regresión', ('Lineal', 'Cuadrática'))
 
     st.subheader('Ingresa los datos')

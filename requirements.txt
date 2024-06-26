@@ -5,3 +5,4 @@ scikit-learn
 pandas
 seaborn
 st-pages
+pillow

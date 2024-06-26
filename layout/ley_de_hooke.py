@@ -43,10 +43,13 @@ def write():
 
     # Animación
     if st.session_state.running:
-        for time_point in np.arange(0, 10, 0.05):  # Pasos más pequeños para mayor fluidez
-            line.set_ydata(np.sin(np.sqrt(k / m) * line.get_xdata()))
-            point.set_data([time_point], [np.sin(np.sqrt(k / m) * time_point)])
-            plot_placeholder.pyplot(fig)  # Actualizar el gráfico existente
-            time.sleep(0.05)
-            if not st.session_state.running:
-                break
+        try:
+            for time_point in np.arange(0, 10, 0.05):  # Pasos más pequeños para mayor fluidez
+                line.set_ydata(np.sin(np.sqrt(k / m) * line.get_xdata()))
+                point.set_data([time_point], [np.sin(np.sqrt(k / m) * time_point)])
+                plot_placeholder.pyplot(fig)  # Actualizar el gráfico existente
+                time.sleep(0.05)
+                if not st.session_state.running:
+                    break
+        except Exception as e:
+            st.exception(e)

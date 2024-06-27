@@ -38,3 +38,15 @@ MANIFEST
 venv/
 *.pyc
 .ipynb_checkpoints
+
+# Directories
+Library/
+Scripts/
+etc/
+
+# Specific files (adjust if you have others like this)
+*.dll
+*.pdb
+*.spv
+*.exe
+*.json

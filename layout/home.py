@@ -1,9 +1,9 @@
 import streamlit as st
-from styles.theme import theme
+#from styles.theme import theme
 
 
 def write():
-    theme()
+    #theme()
 
     st.markdown(
         """

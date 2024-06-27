@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
 import pandas as pd
-from styles.theme import theme
+#from styles.theme import theme
 
 
 def calcular_regresion(x, y, tipo):
@@ -46,7 +46,7 @@ def graficar_regresion(x, y, y_pred, r2, ecuacion):
 
 
 def write():
-    theme()
+   # theme()
     st.markdown(
         """
         <style>

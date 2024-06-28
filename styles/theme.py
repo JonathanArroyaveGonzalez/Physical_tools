@@ -2,6 +2,7 @@ import streamlit as st
 
 
 def theme():
+
     ms = st.session_state
     if "themes" not in ms:
         ms.themes = {"current_theme": "light",
@@ -13,14 +14,14 @@ def theme():
                                #"theme.secondaryBackgroundColor": "#5591f5",
                                "theme.textColor": "white",
                                "theme.textColor": "white",
-                               "button_face": "🌜"},
+                               "button_face": "🌙"},
 
                      "dark": {"theme.base": "light",
                               "theme.backgroundColor": "white",
                               #"theme.primaryColor": "#5591f5",
                               #"theme.secondaryBackgroundColor": "#82E1D7",
                               "theme.textColor": "#0a1464",
-                              "button_face": "🌞"},
+                              "button_face": "☀️"},
                      }
 
     def ChangeTheme():

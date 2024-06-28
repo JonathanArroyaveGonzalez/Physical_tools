@@ -25,7 +25,7 @@ def plot_spring_motion(k, m, time_point):
 def write():
  #   theme()
     # Configuración inicial de Streamlit
-    st.title('Simulación de la Ley de Hooke con Visualización Dinámica')
+    st.title('Simulación de la Ley de Hooke con Visualización Dinámica 👩🏾‍💻')
     # Sección de Teoría
     with st.expander("Teoría de la Ley de Hooke"):
         st.markdown("""
@@ -34,14 +34,14 @@ def write():
         **Fórmula:**
 
         ```
-        F = -kx
+        F = -K * 🛆x
         ```
 
         Donde:
 
-        * F es la fuerza ejercida por el resorte (en Newtons).
+        * F es la fuerza (en Newton).
         * k es la constante elástica del resorte (en N/m), una medida de su rigidez.
-        * x es el desplazamiento desde la posición de equilibrio (en metros).
+        * 🛆x es la variación que experimenta la longitud del resorte, ya sea una compresión o extensión.
 
         **Movimiento Armónico Simple (MAS):**
 
@@ -77,10 +77,10 @@ def write():
     # Animación
     if st.session_state.running:
         try:
-            for time_point in np.arange(0, 10, 0.05):  # Pasos más pequeños para mayor fluidez
+            for time_point in np.arange(0, 100, 0.05):  # Rango extendido
                 line.set_ydata(np.sin(np.sqrt(k / m) * line.get_xdata()))
-                point.set_data([time_point], [np.sin(np.sqrt(k / m) * time_point)])
-                plot_placeholder.pyplot(fig)  # Actualizar el gráfico existente
+                point.set_data([time_point % 10], [np.sin(np.sqrt(k / m) * (time_point % 10))])
+                plot_placeholder.pyplot(fig)
                 time.sleep(0.05)
                 if not st.session_state.running:
                     break

@@ -9,9 +9,14 @@ Physical Tools es una aplicación web interactiva diseñada para facilitar el an
 ## Características Principales 🚀
 
 * **Calculadora de Regresiones:** Realiza análisis de regresión lineal y polinomial con facilidad. Visualiza tus datos y encuentra las mejores curvas de ajuste.
+![App Platorm](assets/calculadora_regresiones.png)
 * **Simulador de Ley de Hooke:** Experimenta con la Ley de Hooke a través de simulaciones interactivas. Ajusta parámetros y observa cómo cambia el comportamiento de resortes y sistemas elásticos.
+![App Platorm](assets/simulador_ley_hooke.png)
 * **Calculadora de Porcentaje de Error:** Evalúa la precisión de tus mediciones experimentales comparándolas con valores teóricos.
+![App Platorm](assets/calculadora_porcentaje_error.png)
 * **Interfaz Amigable:** Navega fácilmente por nuestras herramientas gracias a una interfaz intuitiva y organizada.
+![App Platorm](assets/theme_ligth.png)
+![App Platorm](assets/theme_dark.png)
 * **Temas Personalizables:** Elige entre temas claro y oscuro para adaptar la apariencia de la aplicación a tus preferencias.
 
 ## Cómo Empezar 🏁

@@ -2,66 +2,58 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 import time
-#from styles.theme import theme
 
 
-def plot_spring_motion(k, m, time_point):
+def plot_spring_motion(k, m):
     t = np.linspace(0, 10, 400)
     omega = np.sqrt(k / m)
     x = np.sin(omega * t)
 
-    # Crear el gráfico (una sola vez)
     fig, ax = plt.subplots()
-    line, = ax.plot(t, x, label='Onda completa')  # Almacenar la línea
-    point, = ax.plot([], [], 'ro', label='Posición actual')  # Punto inicial vacío
+    line, = ax.plot(t, x, label='Onda completa')
+    point, = ax.plot([], [], 'ro', label='Posición actual')
+
     ax.set_xlim([0, 10])
     ax.set_ylim([-1.5, 1.5])
     ax.set_xlabel('Tiempo (segundos)')
     ax.set_ylabel('Desplazamiento (metros)')
     ax.set_title('Movimiento del Resorte en el Tiempo')
     ax.legend()
-    return fig, line, point
+
+    return fig, line, point, t
+
+
+def update_plot(line, point, t, omega, frame):
+    y_data = np.sin(omega * t)
+    line.set_ydata(y_data)
+    point.set_data([t[frame]], [y_data[frame]])
+
 
 def write():
- #   theme()
-    # Configuración inicial de Streamlit
     st.title('Simulación de la Ley de Hooke con Visualización Dinámica 👩🏾‍💻')
+
     # Sección de Teoría
     with st.expander("Teoría de la Ley de Hooke"):
         st.markdown("""
         La **Ley de Hooke** describe la relación entre la fuerza aplicada a un resorte y su deformación. En términos simples, establece que la fuerza ejercida por un resorte es directamente proporcional a la distancia que se estira o comprime desde su posición de equilibrio.
 
         **Fórmula:**
-
         ```
-        F = -K * 🛆x
+        F = -K * Δx
         ```
-
         Donde:
-
         * F es la fuerza (en Newton).
         * k es la constante elástica del resorte (en N/m), una medida de su rigidez.
-        * 🛆x es la variación que experimenta la longitud del resorte, ya sea una compresión o extensión.
-
-        **Movimiento Armónico Simple (MAS):**
-
-        Un sistema masa-resorte ideal, donde la única fuerza actuante es la del resorte, exhibe un movimiento armónico simple (MAS). En este tipo de movimiento, la posición de la masa en función del tiempo se describe mediante una función sinusoidal.
-
-        **Fórmulas Adicionales:**
-
-        ```
-        ω = √(k/m)  (Frecuencia angular)
-        T = 2π/ω   (Periodo)
-        f = 1/T     (Frecuencia)
-        ```
+        * Δx es la variación que experimenta la longitud del resorte, ya sea una compresión o extensión.
         """)
 
+    # Parámetros ajustables
     k = st.slider('Constante elástica k (N/m)', 1.0, 100.0, 20.0, 0.5)
     m = st.slider('Masa suspendida m (kg)', 0.1, 10.0, 1.0, 0.1)
 
-    # Crear el gráfico solo una vez
-    fig, line, point = plot_spring_motion(k, m, 0)  # Gráfico inicial
-    plot_placeholder = st.pyplot(fig)  # Placeholder para actualizar el gráfico
+    # Crear el gráfico una vez
+    fig, line, point, t = plot_spring_motion(k, m)
+    plot_placeholder = st.pyplot(fig)
 
     # Botones para controlar la animación
     if 'running' not in st.session_state:
@@ -74,15 +66,17 @@ def write():
     if stop_button:
         st.session_state.running = False
 
-    # Animación
+    omega = np.sqrt(k / m)
+    frames = len(t)
+
     if st.session_state.running:
-        try:
-            for time_point in np.arange(0, 100, 0.05):  # Rango extendido
-                line.set_ydata(np.sin(np.sqrt(k / m) * line.get_xdata()))
-                point.set_data([time_point % 10], [np.sin(np.sqrt(k / m) * (time_point % 10))])
-                plot_placeholder.pyplot(fig)
-                time.sleep(0.05)
-                if not st.session_state.running:
-                    break
-        except Exception as e:
-            st.exception(e)
+        for frame in range(frames):
+            if not st.session_state.running:
+                break
+            update_plot(line, point, t, omega, frame)
+            plot_placeholder.pyplot(fig)
+            time.sleep(0.05)
+
+
+
+
